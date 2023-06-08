@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lodash.uniqueid": "^4.0.1",
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@types/lodash.uniqueid": "^4.0.7",
     "@vitejs/plugin-vue": "^4.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
