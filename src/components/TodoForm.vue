@@ -8,6 +8,7 @@
       autocomplete="off" 
       placeholder="Create a new todo..."
       v-model.lazy.trim="label"
+      class="w-full h-12 rounded mt-8"
       />
   </form>
 </template>

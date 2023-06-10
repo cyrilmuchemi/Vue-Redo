@@ -17,11 +17,11 @@ export default {
         'dark-grayish-blue': "hsl(236, 9%, 61%)",
         'very-dark-grayish-blue': "hsl(235, 19%, 35%)",
         "check-background": "linear-gradient hsl(192, 100%, 67%)"
+      },
+      fontFamily: {
+        Josefin: ["Josefin Sans, sans-serif"]
       }
     },
-    fontFamily: {
-      Josefin: ["Josefin Sans, sans-serif"]
-    }
 
   },
   plugins: [],
