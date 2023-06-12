@@ -10,16 +10,16 @@
       </div>
     <div>
     <ul aria-labelledby="completed-todos" class="bg-white h-12 mt-6 rounded font-Josefin pt-6 flex flex-col gap-6 text-very-dark-grayish-blue">
-    <li v-for="item in TodoItems" :key="item.id">
+    <li v-for="item in filteredTodoItems" :key="item.id">
       <to-do-item :label="item.label" :done=item.done :id="item.id" @checkbox-changed="updateDoneStatus(item.id)"></to-do-item>
       <hr class="mt-2"/>
     </li>
     <div class="flex bg-white justify-between mt-2 cursor-pointer font-Josefin text-sm text-very-dark-grayish-blue">
         <span id="completed todos">{{ inCompletedTodos }}</span>
         <article class="gap-2 flex">
-          <span>All</span>
-          <span>Active</span>
-          <span>Completed</span>
+          <span @click="filterTodos('all')">All</span>
+          <span @click="filterTodos('active')">Active</span>
+          <span @click="filterTodos('completed')">Completed</span>
         </article>
         <span>Clear completed</span>
       </div>
@@ -45,6 +45,8 @@ export default {
         {id:uniqueId('todo-'), label: "Build a network", done: false},
         {id:uniqueId('todo-'), label: "Drink coffee", done: true}
       ],
+      
+      filter: 'all'
     };
   },
   methods: {
@@ -54,6 +56,10 @@ export default {
     updateDoneStatus(toDoId){
       const todoUpdate = this.TodoItems.find((item)=>item.id===toDoId)
       todoUpdate.done = !todoUpdate.done
+    },
+
+    filterTodos(filter){
+      this.filter = filter
     }
 
   },
@@ -61,6 +67,17 @@ export default {
     inCompletedTodos(){
       const unFinishedItems = this.TodoItems.filter((item)=>!item.done).length;
       return `${unFinishedItems} items left`
+    },                                                                                                                                                                                                                                      
+    filteredTodoItems(){
+      if(this.filter === 'all') {
+        return this.TodoItems
+      }
+      else if(this.filter === 'active') {
+        return this.TodoItems.filter(item => !item.done)
+      }
+      else if(this.filter === 'completed') {
+        return this.TodoItems.filter(item => item.done)
+      }
     }
   }
 
