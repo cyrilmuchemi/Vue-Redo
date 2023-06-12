@@ -11,7 +11,7 @@
     <div>
     <ul aria-labelledby="completed-todos" class="bg-white h-12 mt-6 rounded font-Josefin pt-6 flex flex-col gap-6 text-very-dark-grayish-blue">
     <li v-for="item in filteredTodoItems" :key="item.id">
-      <to-do-item :label="item.label" :done=item.done :id="item.id" @checkbox-changed="updateDoneStatus(item.id)"></to-do-item>
+      <to-do-item :label="item.label" :done=item.done :id="item.id" @checkbox-changed="updateDoneStatus(item.id)"  @delete-item="deleteTodoItem"></to-do-item>
       <hr class="mt-2"/>
     </li>
     <div class="flex bg-white justify-between mt-2 cursor-pointer font-Josefin text-sm text-very-dark-grayish-blue">
@@ -21,7 +21,7 @@
           <span @click="filterTodos('active')">Active</span>
           <span @click="filterTodos('completed')">Completed</span>
         </article>
-        <span>Clear completed</span>
+        <span @click="clearCompleted" >Clear completed</span>
       </div>
     </ul>
       </div>
@@ -60,6 +60,14 @@ export default {
 
     filterTodos(filter){
       this.filter = filter
+    },
+
+    deleteTodoItem(toDoId) {
+      this.TodoItems = this.TodoItems.filter(item => item.id != toDoId)
+    },
+
+    clearCompleted() {
+      this.TodoItems = this.TodoItems.filter(item => !item.done)
     }
 
   },
