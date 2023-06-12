@@ -1,8 +1,8 @@
 <template>
     <div class="flex items-center ml-3 relative">
-      <input type="checkbox" :id="id" :checked="isDone" class="mr-2 hidden" @change="toggleIsDone" />
-      <label :for="id" class="ml-2 rounded-lg inline-flex items-center justify-center w-4 h-4 bg-white border-2 border-gray-400">
-        <span class="rounded-full bg-blue-500 w-3 h-3" v-if="isDone">
+      <input type="checkbox" :id="id" :checked="isDone" class="mr-2 hidden" @change="toggleIsDone"/>
+      <label :for="id" class="ml-2 rounded-lg inline-flex items-center justify-center w-4 h-4 bg-white border-2 border-gray-400 cursor-pointer">
+        <span class="rounded-full bg-check-background w-3 h-3" @change="$emit(checkbox-changed)" v-if="isDone">
             <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9"><path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/></svg>
         </span>
       </label>
@@ -28,6 +28,7 @@ export default{
     methods: {
     toggleIsDone() {
       this.isDone = !this.isDone;
+      this.$emit('checkbox-changed', this.id, this.isDone);
     }
   }
 }

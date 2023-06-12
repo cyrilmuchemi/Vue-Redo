@@ -16,10 +16,10 @@ export default {
         'grayish-blue': "hsl(233, 11%, 84%)",
         'dark-grayish-blue': "hsl(236, 9%, 61%)",
         'very-dark-grayish-blue': "hsl(235, 19%, 35%)",
-        "check-background": "linear-gradient hsl(192, 100%, 67%)"
+        "check-background": "hsl(280, 87%, 65%)"
       },
       fontFamily: {
-        Josefin: ["Josefin Sans, sans-serif"]
+        Josefin: ["Josefin Sans", "sans-serif"]
       }
     },
 
