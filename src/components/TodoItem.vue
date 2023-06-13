@@ -42,4 +42,8 @@ export default {
 .line-through {
   text-decoration: line-through;
 }
+
+.bg-check-background {
+  background: linear-gradient(to right bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
 </style>

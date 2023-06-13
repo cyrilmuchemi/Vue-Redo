@@ -1,6 +1,6 @@
 <template>
-    <div id="app" class="flex items-center justify-center bg-no-repeat bg-cover bg-desktop-light font-Josefin">
-    <div class="text-center mt-16 md:w-1/4 sm:w-1/4"> 
+    <div id="app" class="flex items-center justify-center bg-no-repeat w-full bg-cover bg-desktop-light font-Josefin">
+    <div class="text-center mt-16 w-full md:w-1/2 lg:w-1/3 xl:w-1/4"> 
       <div class="flex justify-between">
         <h1 class="text-4xl text-white uppercase tracking-widest" >Todo</h1>
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"><path fill="#FFF" fill-rule="evenodd" d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"/></svg>
@@ -15,13 +15,13 @@
       <hr class="mt-2"/>
     </li>
     <div class="flex bg-white justify-between mt-2 cursor-pointer font-Josefin text-sm text-very-dark-grayish-blue">
-        <span id="completed todos">{{ inCompletedTodos }}</span>
+        <span class="hover:text-bright-blue" id="completed todos">{{ inCompletedTodos }}</span>
         <article class="gap-2 flex">
-          <span @click="filterTodos('all')">All</span>
-          <span @click="filterTodos('active')">Active</span>
-          <span @click="filterTodos('completed')">Completed</span>
+          <span class="hover:text-bright-blue" @click="filterTodos('all')">All</span>
+          <span class="hover:text-bright-blue" @click="filterTodos('active')">Active</span>
+          <span class="hover:text-bright-blue" @click="filterTodos('completed')">Completed</span>
         </article>
-        <span @click="clearCompleted" >Clear completed</span>
+        <span class="hover:text-bright-blue" @click="clearCompleted" >Clear completed</span>
       </div>
     </ul>
       </div>
@@ -40,12 +40,7 @@ export default {
   },
   data(){
     return {
-      TodoItems: [
-        {id:uniqueId('todo-'), label: "Learn Vue", done: false},
-        {id:uniqueId('todo-'), label: "Build a network", done: false},
-        {id:uniqueId('todo-'), label: "Drink coffee", done: true}
-      ],
-      
+      TodoItems: JSON.parse(localStorage.getItem("todos")) || [],
       filter: 'all'
     };
   },
@@ -87,6 +82,16 @@ export default {
         return this.TodoItems.filter(item => item.done)
       }
     }
+  },
+
+  watch: {
+    TodoItems: {
+    deep: true,
+    handler(newItems) {
+      localStorage.setItem("todos", JSON.stringify(newItems));
+    },
+  },
+
   }
 
 }
