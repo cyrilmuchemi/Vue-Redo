@@ -24,11 +24,16 @@ export default {
 
       screens: {
         sm: "350px",
-        md: "768px"
+        md: "668px",
+        dark: {
+          raw: "(prefers-color-scheme: dark)"
+        },
       }
     },
 
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-dark-mode')(),
+  ],
 }
 
