@@ -34,9 +34,9 @@
         <to-do-form :is-dark-mode="isDarkMode" @todo-added="addTodo" ></to-do-form>
       </div>
     <div>
-    <ul aria-labelledby="completed-todos" class="shadow-2xl h-12 mt-6 rounded-xl font-Josefin pt-4 flex flex-col text-very-dark-grayish-blue"  :class="{ 'dark-mode-bg': isDarkMode, 'dark-mode-text': isDarkMode  }">
+    <ul aria-labelledby="completed-todos" class="shadow-2xl h-12 mt-6 rounded-xl cursor-pointer font-Josefin pt-4 flex flex-col text-very-dark-grayish-blue"  :class="{ 'dark-mode-bg': isDarkMode, 'dark-mode-text': isDarkMode  }">
     <li v-for="item in filteredTodoItems" :key="item.id" class="bg-white pt-4"  :class="{ 'dark-mode-bg': isDarkMode }">
-      <to-do-item :label="item.label" :done=item.done :is-dark-mode="isDarkMode" :id="item.id" @checkbox-changed="updateDoneStatus(item.id)"  @delete-item="deleteTodoItem"></to-do-item>
+      <to-do-item :label="item.label" :done=item.done :is-dark-mode="isDarkMode" :id="item.id" @checkbox-changed="updateDoneStatus(item.id)"  @delete-item="deleteTodoItem" @rearrange-todo="rearrangeTodoItem"></to-do-item>
       <hr class="mt-2"/>
     </li>
     <div class="flex bg-white shadow-2xl justify-between pt-5 pb-2 pl-1 pr-1 cursor-pointer font-Josefin text-sm text-very-dark-grayish-blue"  :class="{ 'dark-mode-bg': isDarkMode, 'dark-mode-text': isDarkMode  }">
@@ -51,6 +51,9 @@
     </ul>
       </div>
     </div> 
+    <div class="absolute bottom-20">
+      <span class="text-dark-grayish-blue pr-20">Drag and drop to reorder list</span>   
+    </div>
   </div>
 </template>
 
@@ -101,7 +104,16 @@ export default {
       this.backgroundImage = this.isDarkMode
         ? 'url("./src/assets/bg-desktop-dark.jpg")'
         : 'url("./src/assets/bg-desktop-light.jpg")';
-    }
+    },
+    rearrangeTodoItem(sourceId, targetId) {
+      const sourceIndex = this.TodoItems.findIndex((item) => item.id === sourceId);
+      const targetIndex = this.TodoItems.findIndex((item) => item.id === targetId);
+      if (sourceIndex > -1 && targetIndex > -1) {
+        const movedItem = this.TodoItems[sourceIndex];
+        this.TodoItems.splice(sourceIndex, 1);
+        this.TodoItems.splice(targetIndex, 0, movedItem);
+      }
+    },
 
   },
   computed: {

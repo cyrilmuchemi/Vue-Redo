@@ -6,10 +6,18 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9"><path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/></svg>
       </span>
     </label>
+    <div
+    :draggable="true"
+    @dragstart="onDragStart"
+    @dragover="onDragOver"
+    @drop="onDrop"
+    @dragend="onDragEnd"
+    >
     <label :for="id" class="ml-3" :class="{'line-through': isDone}">{{ label }}</label>
     <span v-if="showCloseIcon" class="right-3 cursor-pointer absolute" @click="deleteItem">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" :class="{'dark-mode-icon': isDarkMode }" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
     </span>
+    </div>
   </div>
 </template>
 
@@ -37,7 +45,25 @@ export default {
     },
     deleteItem() {
       this.$emit('delete-item', this.id);
-    }
+    },
+    onDragStart(event) {
+      event.dataTransfer.setData('text/plain', this.id);
+      event.dataTransfer.effectAllowed = 'move';
+      // Additional styling if needed
+    },
+    onDragOver(event) {
+      event.preventDefault();
+      // Additional styling if needed
+    },
+    onDrop(event) {
+      event.preventDefault();
+      const todoId = event.dataTransfer.getData('text/plain');
+      this.$emit('rearrange-todo', todoId, this.id);
+      // Additional styling if needed
+    },
+    onDragEnd(event) {
+      // Additional cleanup or styling if needed
+    },
   }
 };
 </script>
