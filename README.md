@@ -34,12 +34,12 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [your_project_name] <a name="about-project"></a>
+# 📖 [Todo List App] <a name="about-project"></a>
 
 > This is a Todo List challenge from FrontEnd Mentor. i was provided with an image design
 and required to make an app that looks as close to the design as possible
 
-**[your_project__name]** Todo List App
+**[Todo List App]** 
 
 ## 🛠 Built With <a name="built-with"></a>
 - Cyril Muchemi
@@ -81,13 +81,6 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-<!--
-Example command:
-
-```sh
- gem install rails
-```
- -->
 
 ### Setup
 
@@ -159,22 +152,6 @@ If you like this project...
 > Give credit to everyone who inspired your codebase.
 
 I would like to thank...
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- FAQ (optional) -->
-
-## ❓ FAQ (OPTIONAL) <a name="faq"></a>
-
-> Add at least 2 questions new developers would ask when they decide to use your project.
-
-- **[Question_1]**
-
-  - [Answer_1]
-
-- **[Question_2]**
-
-  - [Answer_2]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
