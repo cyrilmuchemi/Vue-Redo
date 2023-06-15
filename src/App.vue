@@ -71,7 +71,7 @@ export default {
       TodoItems: JSON.parse(localStorage.getItem("todos")) || [],
       filter: 'all',
       isDarkMode: false,
-      backgroundImage: 'url("./src/assets/bg-desktop-light.jpg")',
+      backgroundImage: 'url("/assets/bg-desktop-light.jpg")',
     };
   },
   methods: {
@@ -102,8 +102,8 @@ export default {
         document.documentElement.classList.remove('dark-mode');
       }
       this.backgroundImage = this.isDarkMode
-        ? 'url("./src/assets/bg-desktop-dark.jpg")'
-        : 'url("./src/assets/bg-desktop-light.jpg")';
+        ? 'url("/assets/bg-desktop-dark.jpg")'
+        : 'url("/assets/bg-desktop-light.jpg")';
     },
     rearrangeTodoItem(sourceId, targetId) {
       const sourceIndex = this.TodoItems.findIndex((item) => item.id === sourceId);
